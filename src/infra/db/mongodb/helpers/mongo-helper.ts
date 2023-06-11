@@ -16,7 +16,6 @@ export const MongoHelper = {
   },
 
   map: (collection: any): any => {
-    console.log('collection', collection)
     const { acknowledged, insertedId } = collection
     return Object.assign(acknowledged, insertedId)
   }
