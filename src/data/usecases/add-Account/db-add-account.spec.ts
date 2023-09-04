@@ -13,7 +13,6 @@ const makeEncrypter = (): Encrypter => {
 const makeAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (accountData: AddAccountModel): Promise<AccountModel> {
-  
       return new Promise(resolve => resolve(makeFakeAccount()))
     }
   }
@@ -27,11 +26,11 @@ const makeFakeAccount = (): AccountModel => ({
   password: 'hashed_password'
 })
 
-const  makeFakeAccountData = (): AddAccountModel => ({
-    name: 'vallidName',
-    email: 'valid_email',
-    password: 'valid_password'
-  })
+const makeFakeAccountData = (): AddAccountModel => ({
+  name: 'vallidName',
+  email: 'valid_email',
+  password: 'valid_password'
+})
 
 interface SutTypes {
   sut: DbAddAccount
@@ -55,7 +54,7 @@ describe('DbAddAccount Usecase', () => {
     const { sut, encrypterStub } = makeSut()
 
     const encriptSpy = jest.spyOn(encrypterStub, 'encrypt')
-    
+
     await sut.add(makeFakeAccountData())
     expect(encriptSpy).toHaveBeenCalledWith('valid_password')
   })
