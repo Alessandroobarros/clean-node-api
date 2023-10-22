@@ -1,8 +1,7 @@
 import { badRequest, serverError, ok } from '../../helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse, AddAccount, Validation } from './signup-protocolls'
+import { Controller, HttpRequest, HttpResponse, AddAccount, Validation } from './signup-controller-protocolls'
 
 export class SignUpController implements Controller {
-
   constructor (
     private readonly addAccount: AddAccount,
     private readonly validation: Validation) {}
@@ -11,7 +10,7 @@ export class SignUpController implements Controller {
     try {
       const error = this.validation.validate(httpRequest.body)
 
-      if(error){
+      if (error) {
         return badRequest(error)
       }
 
